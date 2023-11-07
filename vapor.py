@@ -14,27 +14,20 @@ def jeu(idJeu):
     jeu = db.get_jeu_by_id(idJeu)
     return render_template("all_games.html", jeux=jeu)
 
-@app.route('/films_genre/<int:id_genre>')
-def films_genre(id_genre):
-    print(id_genre)
-    films = db.get_films_by_genre(id_genre)
-    print(films)
-    return render_template("liste_films.html", films=films)
+@app.route('/admin.<table>')
+def admin(table):
+    print("admin : ", table)
+    jeux = db.get_admin(table)
+    colonnes = db.get_columns(table)
+    return render_template("admin.html", jeux=jeux, colonnes=colonnes)
 
-@app.route('/films_annee/<int:annee>')
-def films_annee(annee):
-    print(annee)
-    films = db.get_films_by_annee(annee)
-    print(films)
-    return render_template("liste_films.html", films=films)
+@app.route('/admin.<table>/<parametre>.<valeur>')
+def admin_param(table,parametre,valeur):
+    print(f"admin : {table}, {parametre} : {valeur}")
+    jeux = db.get_admin_param(table,parametre,valeur)
+    colonnes = db.get_columns(table)
+    return render_template("admin.html", jeux=jeux, colonnes=colonnes)
 
-@app.route('/acteurs_film/<int:idFilm>')
-def acteurs_film(idFilm):
-    print(idFilm)
-    films = db.get_acteurs_by_idFilm(idFilm)
-    print(films)
-    return render_template("liste_acteurs.html", films=films)
-   
 if __name__ == "__main__":
     app.run()
 
