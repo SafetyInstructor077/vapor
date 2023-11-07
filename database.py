@@ -59,3 +59,7 @@ def get_jeu_by_id(idJeu):
                  where idJeu = ?
                  limit 1"""
     return _select(requete, params=(idJeu,))
+
+def get_admin(table):
+    requete = """select * from ?"""
+    return _select(requete, params=(table,))
