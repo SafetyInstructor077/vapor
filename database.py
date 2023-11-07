@@ -61,5 +61,24 @@ def get_jeu_by_id(idJeu):
     return _select(requete, params=(idJeu,))
 
 def get_admin(table):
-    requete = """select * from ?"""
-    return _select(requete, params=(table,))
+    requete = f"""select * from {table}
+                limit 200"""
+    return _select(requete, params=())
+
+def get_admin_param(table,parametre,valeur):
+    plus = ""
+    if parametre == "prix": param = f"where prix <= {int(valeur)}"
+    elif parametre == "keyword": 
+        param = f"where nom like '%{valeur.upper()}%' or desc like '%{valeur.upper()}%'"
+        plus = ",upper(nomJeu) as nom,upper(description) as desc"
+    elif parametre == "dev":
+        param = "inner join developpeur on jeu.idDev == developpeur.idDev"
+        if valeur != "r" : param += f" where developpeur.nomDev == '{valeur}'"
+    requete = f"""select *{plus} from {table}
+                {param}
+                limit 100"""
+    return _select(requete, params=())
+
+def get_columns(table):
+    requete = f"""PRAGMA table_info({table})"""
+    return _select(requete, params=())
