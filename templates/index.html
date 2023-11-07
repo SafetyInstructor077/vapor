@@ -1,0 +1,16 @@
+{% extends "template.html" %}
+{% block title %} Steam {% endblock %}
+
+{% block container %}
+
+<h1 class="title is-1">API</h1>
+<table class="table is-narrow is-hoverable is-bordered">
+    <!-- <thead><tr><td><b>Titre</b></td><td><b>Réalisateur</b></td><td><b>Année</b></td><td><b>Genre</b></td></thead> -->
+    <tbody>
+    <!-- {% for filmid, titre, real, annee, genre, id, realid in films %}
+        <tr><td><a href="actors/{{filmid}}">{{ titre }}</a></td><td><a href="/films_de/{{realid}}">{{real}}</a></td><td><a href="/date/{{annee}}">{{ annee }}</a></td><td><a href="/genre/{{id}}">{{ genre }}</a></td></tr>
+    {% endfor %} -->
+    </tbody>
+</table>
+
+{% endblock %}

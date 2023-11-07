@@ -1,0 +1,18 @@
+{% extends "common_layout.html" %}
+{% block title %} Liste des acteurs {% endblock %}
+
+{% block container %}
+
+
+<h1 class="title is-1">Liste d'acteurs</h1>
+
+<table class="table is-narrow is-hoverable is-bordered">
+    <thead><tr><td><b>Titre</b></td><td><b>Année</b></td></thead>
+    <tbody>
+    {% for acteurs, naissance in actors %}
+        <tr><td>{{ nom }}</td><td>{{ naissance }}</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
