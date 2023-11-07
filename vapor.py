@@ -5,43 +5,36 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    jeux = db.get_all_jeux()
+    return render_template("all_games.html", jeux=jeux)
 
+@app.route('/jeu/<int:idJeu>')
+def jeu(idJeu):
+    print(idJeu)
+    jeu = db.get_jeu_by_id(idJeu)
+    return render_template("all_games.html", jeux=jeu)
 
-#essayez d'appeler cette route avec par exemple l'URL : http://127.0.0.1:5000/films_de/13848
-#13848 est l'id de Charles Chaplin
-# @app.route('/films_de/<int:id_real>')
-# def films_de(id_real):
-#     print(id_real)
-#     films = db.get_films_from(id_real)
-#     print(films)
-#     return render_template("liste_films.html", films=films)
+@app.route('/films_genre/<int:id_genre>')
+def films_genre(id_genre):
+    print(id_genre)
+    films = db.get_films_by_genre(id_genre)
+    print(films)
+    return render_template("liste_films.html", films=films)
 
-# @app.route('/genre/<int:id_genre>')
-# def genre(id_genre):
-#     print(id_genre)
-#     films = db.get_films_by(id_genre)
-#     print(films)
-#     return render_template("liste_films.html", films=films)
+@app.route('/films_annee/<int:annee>')
+def films_annee(annee):
+    print(annee)
+    films = db.get_films_by_annee(annee)
+    print(films)
+    return render_template("liste_films.html", films=films)
 
-# @app.route('/date/<int:id_date>')
-# def date(id_date):
-#     print(id_date)
-#     films = db.get_films_by_date(id_date)
-#     print(films)
-#     return render_template("liste_films.html", films=films)
-
-# @app.route('/actors/<int:id_film>')
-# def actor(id_film):
-#     print(id_film)
-#     actors = db.get_actors_by(id_film)
-#     print(actors)
-    return render_template("liste_actors.html", actors=actors)
-
-
-
-
+@app.route('/acteurs_film/<int:idFilm>')
+def acteurs_film(idFilm):
+    print(idFilm)
+    films = db.get_acteurs_by_idFilm(idFilm)
+    print(films)
+    return render_template("liste_acteurs.html", films=films)
    
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
 
