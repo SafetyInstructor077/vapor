@@ -28,6 +28,10 @@ def admin_param(table,parametre,valeur):
     colonnes = db.get_columns(table)
     return render_template("admin.html", jeux=jeux, colonnes=colonnes)
 
+@app.route('/insertion')
+def insert_page():
+    return render_template("insert.html")
+
 if __name__ == "__main__":
     app.run()
 
