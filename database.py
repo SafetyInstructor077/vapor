@@ -74,11 +74,37 @@ def get_admin_param(table,parametre,valeur):
     elif parametre == "dev":
         param = "inner join developpeur on jeu.idDev == developpeur.idDev"
         if valeur != "r" : param += f" where developpeur.nomDev == '{valeur}'"
+    elif parametre == "editeur":
+        param = "inner join editeur on jeu.idEditeur == editeur.idEditeur"
+        if valeur != "r" : param += f" where editeur.nomEditeur == '{valeur}'"
     requete = f"""select *{plus} from {table}
                 {param}
-                limit 100"""
+                limit 200"""
     return _select(requete, params=())
 
 def get_columns(table):
     requete = f"""PRAGMA table_info({table})"""
+    return _select(requete, params=())
+
+def insert_jeu(nomJeu,description,prix,uScore,date,image,achievements,nomDev,nomEditeur,idPlat): # (nomJeu, description, prix, uScore, date, image, achievements, idDev, idEditeur, idPlatforme)
+    try:
+        idDev = _select(f"select idDev from developpeur where nomDev = '{nomDev}'")
+    except:
+        insert_dev(nomDev)
+        idDev = _select(f"select idDev from developpeur where nomDev = '{nomDev}'")
+    if nomEditeur != None:
+        try:
+            idEditeur = _select(f"select idDev from developpeur where nomDev = '{nomEditeur}'")
+        except:
+            insert_editeur(nomEditeur)
+            idEditeur = _select(f"select idDev from developpeur where nomDev = '{nomEditeur}'")
+    requete = f"""insert into jeu values ({nomJeu},{description},{prix},{uScore},{date},{image},{achievements},{idDev},{idEditeur},{idPlat})"""
+    return _select(requete, params=())
+
+def insert_dev(nomDev):
+    requete = f"""insert into developpeur values ({nomDev})"""
+    return _select(requete, params=())
+
+def insert_editeur(nomEditeur):
+    requete = f"""insert into editeur values ({nomEditeur})"""
     return _select(requete, params=())
