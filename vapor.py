@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/')
 def store():
     jeux = db.get_featured()
-    return render_template("template.html", jeux=jeux)
+    return render_template("store.html", jeux=jeux)
 
 @app.route('/jeu/<int:idJeu>')
 def jeu(idJeu):
