@@ -42,8 +42,18 @@
     </form>
 </nav>
 
-<div class="tp" id="tp">
-  <!-- <h1>Games</h1> -->
+{% block content %}
+<!--               SECTION ET CONTAINER                                     -->
+  <section>
+    <div class="container content">
+    {% block container %}
+    {% endblock %}
+    </div>
+  </section>
+{% endblock %}
+
+<!-- <div class="tp" id="tp">
+  <h1>Games</h1>
   <div class="ihm__wrapper">
     <div class="ihm__card">
       <h2>Title</h2>
@@ -52,13 +62,13 @@
     </div>
   </div>
 </div>
-</div>
+</div> -->
+
 
 <div class="footer__container">
   <section class="social__media">
     <div class="social__media--wrap">
       <p class="website__rights">© All Rights Reserved, 2023</p>
-      </div>
     </div>
   </section>
 </div>

@@ -4,14 +4,9 @@ import database as db
 app = Flask(__name__)
 
 @app.route('/')
-def index():
-    jeux = db.get_all_jeux()
-    return render_template("all_games.html", jeux=jeux)
-
-@app.route('/store')
 def store():
     jeux = db.get_featured()
-    return render_template("store.html", jeux=jeux)
+    return render_template("template.html", jeux=jeux)
 
 @app.route('/jeu/<int:idJeu>')
 def jeu(idJeu):
@@ -38,5 +33,5 @@ def insert_page():
     return render_template("insert.html")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
 

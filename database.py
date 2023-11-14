@@ -60,15 +60,14 @@ def get_featured():
         print(ids)
         conditions = f"{ids[0]}"
         for id in ids[1:]:
-            conditions += f" or idJeu = {id}"
-        requete = f"select * from jeu where idJeu = {conditions}"
-        res = _select(requete)
-        print(res)
-        if res == []:
+            conditions += f" or idJeu == {id}"
+        jeux = _select(f"select * from jeu where idJeu == {conditions}")
+        print(jeux)
+        if jeux == []:
             for id in ids:
                 insert_from_id(id)
-            res = _select(f"select * from jeu where idJeu = {conditions}")
-        return res
+            jeux = _select(f"select * from jeu where idJeu = {conditions}")
+        return jeux
     else: return ()
 
 def get_jeux_by_dev(idDev):
