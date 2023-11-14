@@ -8,6 +8,11 @@ def index():
     jeux = db.get_all_jeux()
     return render_template("all_games.html", jeux=jeux)
 
+@app.route('/store')
+def store():
+    jeux = db.get_featured()
+    return render_template("store.html", jeux=jeux)
+
 @app.route('/jeu/<int:idJeu>')
 def jeu(idJeu):
     print(idJeu)
