@@ -1,6 +1,5 @@
 import sqlite3
 from requests import get
-import json
 
 DBNAME = "steamDatabase.db"
 
@@ -22,35 +21,29 @@ def get_plat_id(plat):
 def insert_from_id(id):
     res = get(f"https://store.steampowered.com/api/appdetails?appids={id}")
     if res.status_code == 200:
-        data = json.load(res)
-        for jeu in data:
-            if jeu['name'] != None and jeu["detailed_description"] != None and jeu["price_overview"]["initial"] != None != None and jeu["release_date"]["date"] != None and jeu["image"] != None:
-                if jeu["release_date"]["coming_soon"]:
-                    uScore = 0
-                else :
-                    try: uScore = jeu["metacritic"]["score"]
-                    except: uScore = 0
-                if jeu["achievements"] == None:
+        data = res.json()
+        jeu = data[str(id)]
+        if not jeu["success"]: return None
+        jeu = jeu["data"]
+        if jeu['name'] != None and jeu["detailed_description"] != None and jeu["price_overview"]["initial"] != None and jeu["release_date"]["date"] != None and jeu["header_image"] != None:
+            if jeu["release_date"]["coming_soon"]:
+                uScore = 0
+            else :
+                try: uScore = jeu["metacritic"]["score"]
+                except: uScore = 0
+            try:
+                if jeu["achievements"]["total"] == None:
                     achievements = 0
                 else:
-                    achievements = jeu["achievements"]
-                if jeu["developers"] != None:
-                    if not dev_existe(jeu["developers"]):
-                        insert_dev(jeu["developers"])
-                    dev = _select(f"select idDev from developpeur where nomDev = '{jeu['developeurs']}'")
-                else: dev=None
-                if jeu["publishers"] != None:
-                    if not editeur_existe(jeu["publishers"]):
-                        insert_editeur(jeu["publishers"])
-                    pub = _select(f"select idDev from developpeur where nomDev = '{jeu['publishers']}'")
-                else: pub=None
-                plat = ""
-                p = jeu["platforms"]
-                if p["windows"]: plat += "WIN"
-                if p["mac"]: plat += "MAC" if plat == "" else ",MAC"
-                if p["linux"]: plat += "LNX" if plat == "" else ",LNX"
-                plat = get_plat_id(plat)
-                insert_jeu(jeu['name'],jeu["detailed_description"],jeu["price_overview"]["initial"],uScore,jeu["release_date"]["date"],jeu["header_image"],achievements,dev,pub,plat[0][0])
+                    achievements = jeu["achievements"]["total"]
+            except: achievements = 0
+            plat = ""
+            p = jeu["platforms"]
+            if p["windows"]: plat += "WIN"
+            if p["mac"]: plat += "MAC" if plat == "" else ",MAC"
+            if p["linux"]: plat += "LNX" if plat == "" else ",LNX"
+            plat = get_plat_id(plat)
+            insert_jeu(jeu['name'],jeu["detailed_description"],jeu["price_overview"]["initial"],uScore,jeu["release_date"]["date"],jeu["header_image"],achievements,jeu["developers"][0],jeu["publishers"][0],plat[0][0])
 
 def get_featured():
     res = get("http://store.steampowered.com/api/featured/")
@@ -137,24 +130,24 @@ def get_columns(table):
 def insert_jeu(nomJeu,description,prix,uScore,date,image,achievements,nomDev,nomEditeur,idPlat): # (nomJeu, description, prix, uScore, date, image, achievements, idDev, idEditeur, idPlatforme)
     if not dev_existe(nomDev):
         insert_dev(nomDev)
-        idDev = _select(f"select idDev from developpeur where nomDev = '{nomDev}'")
+    idDev = _select(f"select idDev from developpeur where nomDev == '{nomDev}'")[0]
     if nomEditeur != None:
         if not editeur_existe(nomEditeur):
             insert_editeur(nomEditeur)
-            idEditeur = _select(f"select idEditeur from editeur where nomEditeur = '{nomEditeur}'")
-    requete = f"""insert into jeu values ({nomJeu},{description},{prix},{uScore},{date},{image},{achievements},{idDev},{idEditeur},{idPlat})"""
-    return _select(requete, params=())
+        idEditeur = _select(f"select idEditeur from editeur where nomEditeur == '{nomEditeur}'")[0]
+    requete = f"""insert into jeu (nomJeu,description,prix,uScore,date,image,achievements,idDev,idEditeur,idPlat) values ('{nomJeu.replace("'","’")}','{description.replace("'","’")}',{prix},{uScore},'{date}','{image}',{achievements},{idDev[0]},{idEditeur[0]},{idPlat})"""
+    return _select(requete)
 
 def insert_dev(nomDev):
-    requete = f"""insert into developpeur values ({nomDev})"""
-    return _select(requete, params=())
+    requete = f"""insert into developpeur (nomDev) values ('{nomDev}')"""
+    return _select(requete)
 
 def insert_editeur(nomEditeur):
-    requete = f"""insert into editeur values ({nomEditeur})"""
-    return _select(requete, params=())
+    requete = f"""insert into editeur (nomEditeur) values ('{nomEditeur}')"""
+    return _select(requete)
 
 def dev_existe(nomDev):
-    return _select(f"select idDev from developpeur where nomDev = '{nomDev}'") != []
+    return _select(f"select idDev from developpeur where nomDev == '{nomDev}'") != []
 
 def editeur_existe(nomEditeur):
-    return _select(f"select idEditeur from editeur where nomDev = '{nomEditeur}'") != []
+    return _select(f"select idEditeur from editeur where nomEditeur == '{nomEditeur}'") != []
