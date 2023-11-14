@@ -42,7 +42,7 @@ def insert_from_id(id):
                 if jeu["publishers"] != None:
                     if not editeur_existe(jeu["publishers"]):
                         insert_editeur(jeu["publishers"])
-                    pub =  _select(f"select idDev from developpeur where nomDev = '{jeu['publishers']}'")
+                    pub = _select(f"select idDev from developpeur where nomDev = '{jeu['publishers']}'")
                 else: pub=None
                 plat = ""
                 p = jeu["platforms"]
@@ -60,8 +60,8 @@ def get_featured():
         print(ids)
         conditions = f"{ids[0]}"
         for id in ids[1:]:
-            conditions += f" or idJeu == {id}"
-        jeux = _select(f"select * from jeu where idJeu == {conditions}")
+            conditions += f" or idJeu = {id}"
+        jeux = _select(f"select * from jeu where idJeu = {conditions}")
         print(jeux)
         if jeux == []:
             for id in ids:
@@ -108,7 +108,7 @@ def get_jeu_by_id(idJeu):
 def get_admin(table):
     requete = f"""select * from {table}
                 limit 200"""
-    return _select(requete, params=())
+    return _select(requete)
 
 def get_admin_param(table,parametre,valeur):
     plus = ""
