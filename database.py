@@ -15,7 +15,8 @@ def _select(requete, params=None):
     return res
 
 def get_plat_id(plat):
-     requete = """select idPlat from platformes where nomPlat = ?"""
+     """Requête qui revoie l'id de la platforme à partir de """
+     requete = """select idPlat from platformes where nomPlat = ?""" 
      return _select(requete, params=(plat,))
 
 def insert_from_id(id):
@@ -25,7 +26,7 @@ def insert_from_id(id):
         jeu = data[str(id)]
         if not jeu["success"]: return None
         jeu = jeu["data"]
-        if jeu['name'] != None and jeu["detailed_description"] != None and jeu["price_overview"]["initial"] != None and jeu["release_date"]["date"] != None and jeu["header_image"] != None:
+        if jeu['name'] != None and jeu["detailed_description"] != None and jeu["release_date"]["date"] != None and jeu["header_image"] != None:
             if jeu["release_date"]["coming_soon"]:
                 uScore = 0
             else :
@@ -37,13 +38,19 @@ def insert_from_id(id):
                 else:
                     achievements = jeu["achievements"]["total"]
             except: achievements = 0
+            try:
+                if jeu["price_overview"]["initial"] == None:
+                    prix = 0
+                else:
+                    prix = jeu["price_overview"]["initial"]
+            except: prix = 0
             plat = ""
             p = jeu["platforms"]
             if p["windows"]: plat += "WIN"
             if p["mac"]: plat += "MAC" if plat == "" else ",MAC"
             if p["linux"]: plat += "LNX" if plat == "" else ",LNX"
             plat = get_plat_id(plat)
-            insert_jeu(jeu['name'],jeu["detailed_description"],jeu["price_overview"]["initial"],uScore,jeu["release_date"]["date"],jeu["header_image"],achievements,jeu["developers"][0],jeu["publishers"][0],plat[0][0])
+            insert_jeu(jeu['name'],jeu["detailed_description"],prix,uScore,jeu["release_date"]["date"],jeu["header_image"],achievements,jeu["developers"][0],jeu["publishers"][0],plat[0][0])
 
 def get_featured():
     res = get("http://store.steampowered.com/api/featured/")
@@ -128,6 +135,7 @@ def get_columns(table):
     return _select(requete, params=())
 
 def insert_jeu(nomJeu,description,prix,uScore,date,image,achievements,nomDev,nomEditeur,idPlat): # (nomJeu, description, prix, uScore, date, image, achievements, idDev, idEditeur, idPlatforme)
+    print(nomJeu)
     if not dev_existe(nomDev):
         insert_dev(nomDev)
     idDev = _select(f"select idDev from developpeur where nomDev == '{nomDev}'")[0]
