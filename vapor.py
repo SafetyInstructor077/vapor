@@ -12,7 +12,7 @@ def store():
 def jeu(idJeu):
     print(idJeu)
     jeu = db.get_jeu_by_id(idJeu)
-    return render_template("all_games.html", jeux=jeu)
+    return render_template("game.html", jeu=jeu)
 
 @app.route('/admin.<table>')
 def admin(table):
