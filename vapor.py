@@ -28,9 +28,15 @@ def admin_param(table,parametre,valeur):
     colonnes = db.get_columns(table)
     return render_template("admin.html", jeux=jeux, colonnes=colonnes)
 
-@app.route('/insertion')
+@app.route('/insert')
 def insert_page():
     return render_template("insert.html")
+
+@app.route('/insertion', methods=["POST"])
+def insert_form():
+    if request.method == 'POST':
+        jeu = request.form
+        print(jeu)
 
 if __name__ == "__main__":
     app.run(debug=True)
