@@ -3,11 +3,12 @@
 
 {% block container %}
 
-<div class="tp" id="tp">
+<div class="tp" id="tp"> <!-- nomJeu,description,idJeu,prix,image,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,platformes.nomPlat -->
     <div class="ihm__wrapper">
         <div class="ihm__card">
-            <h2>{{ jeu[0] }}</h2>
-            <p>{{ jeu[1] }}</p>
+            <h2>{{ jeu[0][0] }}</h2>
+            <img src="{{ jeu[0][4] }}">
+            <p class="description">{{ jeu[0][1] }}</p>
         </div>
     </div>
 </div>
