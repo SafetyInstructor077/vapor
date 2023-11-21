@@ -61,7 +61,7 @@ def get_featured():
         res = res.json()
         infoJeux = [jeu for jeu in res["featured_win"]]
         if infoJeux == []:
-            return ["Aucun jeu n'est en vedette en ce moment.", "Réessayez plus tard.", 0, 0, "00-00-0000", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png", 0, 1, 1, 1]
+            return [[0,"Aucun jeu n'est en vedette en ce moment.", "Réessayez plus tard.", 0, 0, "00-00-0000", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png", 0, 1, 1, 1]]
         conditions = f"'{infoJeux[0]['name']}'" # chercher les jeux dans la BDD
         for name in infoJeux[1:]:
             conditions += f" or nomJeu = '{name['name']}'"
@@ -71,7 +71,7 @@ def get_featured():
                 insert_from_id(jeu["id"]) # s'il n'y a pas de jeux dans la BDD qui sont sur le devant du magasin alors on les insère
             jeux = _select(f"select * from jeu where nomJeu = {conditions}")
         return jeux
-    else: return ["Aucun jeu n'est en vedette en ce moment.", "Réessayez plus tard.", 0, 0, "00-00-0000", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png", 0, 1, 1, 1]
+    else: return [[0,"Aucun jeu n'est en vedette en ce moment.", "Réessayez plus tard.", 0, 0, "00-00-0000", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png", 0, 1, 1, 1]]
 
 def get_jeux_by_dev(idDev):
     """Retourne les jeux faits par un certain développeur à partir de son id"""
