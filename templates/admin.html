@@ -3,16 +3,15 @@
 
 {% block container %}
 
-<h1 class="title is-1">Admin</h1>
-<table class="table is-narrow is-hoverable is-bordered">
-    <thead>
+<table class="table">
+    <thead class="thead">
         <tr>
             {% for colonne in colonnes %}
             <td><b>{{ colonne[1] }} : {{ colonne[2] }}</b></td>
             {% endfor %}
         </tr>
         </thead>
-    <tbody>
+    <tbody class="tbody">
     {% for jeu in jeux %}
         <tr>
         {% for colonne in jeu %}
