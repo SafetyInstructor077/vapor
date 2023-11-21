@@ -1,18 +1,15 @@
-{% extends "common_layout.html" %}
-{% block title %} Liste des acteurs {% endblock %}
+{% extends "template.html" %}
+{% block title %} Steam {% endblock %}
 
 {% block container %}
 
-
-<h1 class="title is-1">Liste d'acteurs</h1>
-
-<table class="table is-narrow is-hoverable is-bordered">
-    <thead><tr><td><b>Titre</b></td><td><b>Année</b></td></thead>
-    <tbody>
-    {% for acteurs, naissance in actors %}
-        <tr><td>{{ nom }}</td><td>{{ naissance }}</td></tr>
-    {% endfor %}
-    </tbody>
-</table>
+<div class="tp" id="tp">
+    <div class="ihm__wrapper">
+        <div class="ihm__card">
+            <h2>{{ jeu[0] }}</h2>
+            <p>{{ jeu[1] }}</p>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

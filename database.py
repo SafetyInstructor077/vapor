@@ -56,19 +56,21 @@ def get_featured():
     res = get("http://store.steampowered.com/api/featured/")
     if res.status_code == 200:
         res = res.json()
-        ids = [jeu["id"] for jeu in res["featured_win"]]
-        print(ids)
-        conditions = f"{ids[0]}"
-        for id in ids[1:]:
-            conditions += f" or idJeu = {id}"
-        jeux = _select(f"select * from jeu where idJeu = {conditions}")
+        infoJeux = [jeu for jeu in res["featured_win"]]
+        if infoJeux == []:
+            return ["Aucun jeu n'est en vedette en ce moment.", "Réessayez plus tard.", 0, 0, "00-00-0000", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png", 0, 1, 1, 1]
+        conditions = f"'{infoJeux[0]["name"]}'"
+        for name in infoJeux[1:]:
+            conditions += f" or nomJeu = '{name["name"]}'"
+        print(conditions)
+        jeux = _select(f"select * from jeu where nomJeu = {conditions}")
         print(jeux)
         if jeux == []:
-            for id in ids:
-                insert_from_id(id)
-            jeux = _select(f"select * from jeu where idJeu = {conditions}")
+            for jeu in infoJeux:
+                insert_from_id(jeu["id"])
+            jeux = _select(f"select * from jeu where nomJeu = {conditions}")
         return jeux
-    else: return ()
+    else: return ["Aucun jeu n'est en vedette en ce moment.", "Réessayez plus tard.", 0, 0, "00-00-0000", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png", 0, 1, 1, 1]
 
 def get_jeux_by_dev(idDev):
     requete = """select * from jeu
