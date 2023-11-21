@@ -12,6 +12,10 @@
     scroll-behavior: smooth;
 }
 
+body{
+  background: var(--primary);
+}
+
 ::selection {
   background-color: #47648788;
   color: var(--white);
@@ -326,11 +330,11 @@ cursor: pointer;
     transition: 0.3s ease-in;
   }
   
-  /* .ihm__card:first-child {
+  .ihm__card:first-child {
     background-image: url("https://www.ultrahdwallpaper.in/uploads/converted/19/03/12/2299483599-World-Wide-Web-4K-Images-QL5-2560x1440-MM-100.jpg");
     background-size: cover;
     background-position: center;
-  } */
+  }
   
   .ihm__card h2 {
     text-align: center;
