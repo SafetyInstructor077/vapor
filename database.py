@@ -59,9 +59,9 @@ def get_featured():
         infoJeux = [jeu for jeu in res["featured_win"]]
         if infoJeux == []:
             return ["Aucun jeu n'est en vedette en ce moment.", "Réessayez plus tard.", 0, 0, "00-00-0000", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png", 0, 1, 1, 1]
-        conditions = f"'{infoJeux[0]["name"]}'"
+        conditions = f"'{infoJeux[0]['name']}'"
         for name in infoJeux[1:]:
-            conditions += f" or nomJeu = '{name["name"]}'"
+            conditions += f" or nomJeu = '{name['name']}'"
         print(conditions)
         jeux = _select(f"select * from jeu where nomJeu = {conditions}")
         print(jeux)

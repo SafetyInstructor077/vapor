@@ -1,0 +1,15 @@
+{% extends "template.html" %}
+{% block title %} Admin {% endblock %}
+
+{% block container %}
+
+<form action="/insert.php" method="post">
+    <label for="jid"></label>
+    <input type="text" id="jid" name="jid"><br><br>
+    <label for="jnom">Last name:</label>
+    <input type="text" id="jnom" name="jnom"><br><br>
+    
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
