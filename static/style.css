@@ -436,6 +436,12 @@ td {
 .table {
   margin-top: 80px;
   background-color: var(--primary);
-  color: #fff;
+  color: var(--white);
   /* is-narrow is-hoverable is-bordered */
+}
+
+.iform{
+  margin-top: 80px;
+  background-color: var(--primary);
+  color: var(--white);
 }

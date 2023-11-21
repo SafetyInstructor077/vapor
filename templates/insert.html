@@ -1,15 +1,41 @@
 {% extends "template.html" %}
-{% block title %} Admin {% endblock %}
+{% block title %} insert {% endblock %}
 
 {% block container %}
 
-<form action="/insert.php" method="post">
-    <label for="jid"></label>
-    <input type="text" id="jid" name="jid"><br><br>
-    <label for="jnom">Last name:</label>
-    <input type="text" id="jnom" name="jnom"><br><br>
+    <form action="/insert.php" method="post" class="iform">
+        <label for="nomJeu">Last name:</label>
+        <input type="text" id="nomJeu" name="nomJeu"><br><br>
+
+        <label for="description">Last name:</label>
+        <input type="text" id="description" name="description"><br><br>
+
+        <label for="prix">Last name:</label>
+        <input type="number" id="prix" name="prix"><br><br>
+
+        <label for="uScore">Last name:</label>
+        <input type="number" id="uScore" name="uScore"><br><br>
+
+        <label for="date">Last name:</label>
+        <input type="text" id="date" name="date"><br><br>
+
+        <label for="image">Last name:</label>
+        <input type="text" id="image" name="image"><br><br>
+
+        <label for="achievements">Last name:</label>
+        <input type="number" id="achievements" name="achievements"><br><br>
+
+        <label for="idDev">Last name:</label>
+        <input type="number" id="idDev" name="idDev"><br><br>
+
+        <label for="idEditeur">Last name:</label>
+        <input type="number" id="idEditeur" name="idEditeur"><br><br>
+
+        <label for="idPlatforme">Last name:</label>
+        <input type="number" id="idPlatforme" name="idPlatforme"><br><br>
+
     
-    <input type="submit" value="Submit">
-</form>
+        <input type="submit" value="Submit">
+    </form>
 
 {% endblock %}
