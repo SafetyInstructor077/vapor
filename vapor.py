@@ -30,7 +30,7 @@ def admin_param(table,parametre,valeur):
 
 @app.route('/insert')
 def insert_page():
-    platformes = db.toutes_platformes()
+    platformes = db.get_admin("platformes")
     return render_template("insert.html", platformes=platformes)
 
 @app.route('/insertion', methods=["POST"])
