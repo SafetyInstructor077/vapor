@@ -99,7 +99,7 @@ def get_all_jeux():
     return _select(requete)
 
 def get_jeu_by_id(idJeu):
-    requete = """select nomJeu,idJeu,prix,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,platformes.nomPlat from jeu
+    requete = """select nomJeu,description,idJeu,prix,image,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,platformes.nomPlat from jeu
                  inner join developpeur on developpeur.idDev = jeu.idDev
                  inner join editeur on editeur.idEditeur = jeu.idEditeur
                  inner join platformes on platformes.idPlat = jeu.idPlat
@@ -161,3 +161,6 @@ def dev_existe(nomDev):
 
 def editeur_existe(nomEditeur):
     return _select(f"select idEditeur from editeur where nomEditeur == '{nomEditeur}'") != []
+
+def toutes_platformes():
+    return _select("select nomPlat from platformes")
