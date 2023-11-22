@@ -320,7 +320,7 @@ cursor: pointer;
     margin: 10px;
     padding: 5px;
     height: fit-content;
-    width: 180vh;
+    width: 120vh;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
@@ -377,6 +377,42 @@ cursor: pointer;
     transition: 0.3s ease-in;
     cursor: pointer;
   }
+
+  .ihm_container{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: start;
+    padding: 10px;
+  }
+
+  .ihm_text{
+    /* display: block; */
+    /* width: fit-content; */
+    margin-left: 20px;
+    /* align-content: start; */
+  }
+
+  .ihm_text > h2 {
+    text-align: left;
+  }
+
+  .ihm_rest{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .ihm_rest > h4 {
+    margin-right: 50px;
+  }
+
+  .ihm_text p{
+    text-align: left;
+    overflow: wrap;
+    word-wrap: break-word;
+  }
+
+
   
   @media screen and (max-width: 1300px) {
     .ihm__wrapper {
@@ -441,7 +477,6 @@ td {
 } */
 
 .table {
-
   margin-top: 80px;
   background-color: var(--primary);
   color: var(--white);

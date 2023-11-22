@@ -7,9 +7,25 @@
   {% for jeu in jeux %} <!-- (idJeu, nomJeu, description, prix, uScore, date, image, achievements, idDev, idEditeur, idPlatforme) -->
   <div class="ihm__wrapper">
       <div class="ihm__card">
-          <h2>{{ jeu[1] }}</h2>
-          <p>{{ jeu[2][:50] }}</p>
-          <div class="ihm__btn"><button><a href="">More About</a></button></div>
+        <div class="ihm_container">
+          <img width="360px" src="{{ jeu[6] }}">
+          <div class="ihm_text">
+            <h2>{{ jeu[1] }}</h2>
+            <div class="ihm_rest">
+              <h4>
+                {% if jeu[3] == 0 %}
+                  {{ 'Gratuit' }}
+                {% else %}
+                 {{ '{:.2f}$'.format(jeu[3] / 100) }}
+                {% endif %}
+              </h4>
+              <h4>{{ jeu[8] }}</h4>
+            </div>
+            <p>{{ (jeu[2][:200]) }}</p>
+          </div>
+        </div>
+
+        <!-- <div class="ihm__btn"><button><a href="#">More About</a></button></div> -->
       </div>
   </div>
   {% endfor %}
