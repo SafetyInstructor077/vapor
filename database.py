@@ -70,7 +70,7 @@ def get_featured():
             for jeu in infoJeux:
                 insert_from_id(jeu["id"]) # s'il n'y a pas de jeux dans la BDD qui sont sur le devant du magasin alors on les insère
             jeux = _select(f"select * from jeu where nomJeu = {conditions}")
-        return jeux
+        return format_all(jeux)
     else: return [[0,"Aucun jeu n'est en vedette en ce moment.", "Réessayez plus tard.", 0, 0, "00-00-0000", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png", 0, 1, 1, 1]]
 
 def get_jeux_by_dev(idDev):
@@ -178,3 +178,13 @@ def dev_existe(nomDev):
 
 def editeur_existe(nomEditeur):
     return _select(f"select idEditeur from editeur where nomEditeur == '{nomEditeur}'") != []
+
+def format(description):
+    while '<img' in description:
+        description.replace('<img', '<img class="htmlImg"')
+    return description
+
+def format_all(jeux):
+    for jeu in jeux:
+        jeu[2] = format(jeu[2])
+    return jeux
