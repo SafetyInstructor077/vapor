@@ -430,13 +430,22 @@ cursor: pointer;
 }
 
 td {
-  padding-bottom: 20px;
+  padding:10px 5px;
+  margin:10px;
+  border-bottom: 1px #fff solid;
 }
 
+/* tr{
+  background-color: #2e445e9b;
+  border-radius: 10px;
+} */
+
 .table {
+
   margin-top: 80px;
   background-color: var(--primary);
   color: var(--white);
+  border-collapse: collapse;
   /* is-narrow is-hoverable is-bordered */
 }
 
