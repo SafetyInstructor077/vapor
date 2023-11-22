@@ -69,7 +69,7 @@ def get_featured():
         if jeux == []:
             for jeu in infoJeux:
                 insert_from_id(jeu["id"]) # s'il n'y a pas de jeux dans la BDD qui sont sur le devant du magasin alors on les insère
-            jeux = _select(f"select * from jeu where nomJeu = {conditions}")
+            jeux = _select(f"select idJeu,nomJeu,description,prix,uScore,image,developpeur.nomDev inner join developpeur on jeu.idDev = developpeur.idDev from jeu where nomJeu = {conditions}")
         return format_all(jeux)
     else: return [[0,"Aucun jeu n'est en vedette en ce moment.", "Réessayez plus tard.", 0, 0, "00-00-0000", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png", 0, 1, 1, 1]]
 
