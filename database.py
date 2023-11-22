@@ -180,11 +180,13 @@ def editeur_existe(nomEditeur):
     return _select(f"select idEditeur from editeur where nomEditeur == '{nomEditeur}'") != []
 
 def format(description):
-    while '<img' in description:
-        description.replace('<img', '<img class="htmlImg"')
+    while '<img src' in description:
+        description = description.replace('<img src', '<img class="htmlImg" src')
     return description
 
 def format_all(jeux):
-    for jeu in jeux:
-        jeu[2] = format(jeu[2])
+    for i in range(len(jeux)):
+        jeux[i] = list(jeux[i])
+        print(jeux[i])
+        jeux[i][2] = format(jeux[i][2])
     return jeux
