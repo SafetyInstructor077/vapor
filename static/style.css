@@ -410,6 +410,13 @@ cursor: pointer;
     text-align: left;
     overflow: wrap;
     word-wrap: break-word;
+    text-decoration: none;
+    font-size: small;
+  }
+
+  .desc * {
+    all: initial;
+    /* all: unset; */
   }
 
 
@@ -489,3 +496,9 @@ td {
   background-color: var(--primary);
   color: var(--white);
 }
+
+.htmlImg{
+  display: none;
+  max-height: 50px;
+}
+

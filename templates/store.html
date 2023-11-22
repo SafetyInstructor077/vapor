@@ -4,7 +4,7 @@
 {% block container %}
 
 <div class="tp" id="tp">
-  {% for jeu in jeux %} <!-- (idJeu, nomJeu, description, prix, uScore, date, image, achievements, idDev, idEditeur, idPlatforme) -->
+  {% for jeu in jeux %} <!-- (idJeu, nomJeu, description, prix, uScore, image, idDev, idEditeur, idPlatforme) -->
   <div class="ihm__wrapper">
       <div class="ihm__card">
         <div class="ihm_container">
@@ -19,9 +19,9 @@
                  {{ '{:.2f}$'.format(jeu[3] / 100) }}
                 {% endif %}
               </h4>
-              <h4>{{ jeu[8] }}</h4>
+              <h4>{{ jeu[7] }}</h4>
             </div>
-            <p>{{ (jeu[2][:200]) }}</p>
+            <p class="desc">{{ (jeu[2][:200]) | safe }}</p>
           </div>
         </div>
 
