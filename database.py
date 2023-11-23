@@ -1,5 +1,6 @@
 import sqlite3
 from requests import get
+import re
 
 DBNAME = "steamDatabase.db"
 
@@ -189,4 +190,8 @@ def format_all(jeux):
         jeux[i] = list(jeux[i])
         print(jeux[i])
         jeux[i][2] = format(jeux[i][2])
+        jeux[i].append(reduire_desc(jeux[i][2]))
     return jeux
+
+def reduire_desc(description):
+    return re.sub(r'<a(.*</a>)','',re.sub(r'<img(.*/>)','',description)) # on soustrait les liens et les images
