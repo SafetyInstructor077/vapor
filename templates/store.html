@@ -8,7 +8,7 @@
   <div class="ihm__wrapper">
       <div class="ihm__card">
         <div class="ihm_container">
-          <img width="360px" src="{{ jeu[6] }}">
+          <img src="{{ jeu[5] }}">
           <div class="ihm_text">
             <h2>{{ jeu[1] }}</h2>
             <div class="ihm_rest">
@@ -19,16 +19,34 @@
                  {{ '{:.2f}$'.format(jeu[3] / 100) }}
                 {% endif %}
               </h4>
-              <h4>{{ jeu[7] }}</h4>
+              <h4>{{ jeu[6] }}</h4>
             </div>
-            <p class="desc">{{ (jeu[2][:200]) | safe }}</p>
+            <p class="limited-text">{{ (jeu[2] | safe ) }}</p>
           </div>
         </div>
-
         <!-- <div class="ihm__btn"><button><a href="#">More About</a></button></div> -->
+
       </div>
   </div>
   {% endfor %}
 </div>
+
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+    var str = $('.limited-text').text();
+    if(len>200){
+      var new_str = str.subtstr(0,200); 
+      new_str += '<div data="'+str+'">' +  new_str + '... </div>';
+
+      var newDiv = $(new_str);
+      var link_read_more = $('<a class="read_more">Read more</a>');
+      link_read_more.click(function(){
+        var originaltext = $(this).parent().attr('data');
+        $(this).parent().html(originaltext);
+      });
+      newDiv.append(link_read_more);
+    }
+   })
+</script>
 
 {% endblock %}

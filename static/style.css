@@ -319,7 +319,7 @@ cursor: pointer;
   .ihm__card {
     margin: 10px;
     padding: 5px;
-    height: fit-content;
+    /* height: 13rem; */
     width: 120vh;
     border-radius: 4px;
     display: flex;
@@ -330,11 +330,11 @@ cursor: pointer;
     transition: 0.3s ease-in;
   }
   
-  .ihm__card:first-child {
+  /* .ihm__card:first-child {
     background-image: url("https://www.ultrahdwallpaper.in/uploads/converted/19/03/12/2299483599-World-Wide-Web-4K-Images-QL5-2560x1440-MM-100.jpg");
     background-size: cover;
     background-position: center;
-  }
+  } */
   
   .ihm__card h2 {
     text-align: center;
@@ -385,6 +385,10 @@ cursor: pointer;
     padding: 10px;
   }
 
+  .ihm_container > img{
+    max-width: 360px;
+  }
+
   .ihm_text{
     /* display: block; */
     /* width: fit-content; */
@@ -413,13 +417,6 @@ cursor: pointer;
     text-decoration: none;
     font-size: small;
   }
-
-  .desc * {
-    all: initial;
-    /* all: unset; */
-  }
-
-
   
   @media screen and (max-width: 1300px) {
     .ihm__wrapper {
@@ -498,7 +495,7 @@ td {
 }
 
 .htmlImg{
-  display: none;
+  /* display: none; */
   max-height: 50px;
 }
 
