@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+{% block title %} Liste de tous les jeux {% endblock %}
+
+{% block container %}
+
+<table class="table is-narrow is-hoverable is-bordered">
+    <thead>
+        <tr>
+            <td><b>Titre ({{ jeux | length }} jeux)</b></td>
+            <td><b>Prix</b></td>
+            <td><b>Score</b></td>
+            <td><b>Date de sortie</b></td>
+            <td><b>Succès</b></td>
+            <td><b>Développeur</b></td>
+            <td><b>Éditeur</b></td>
+            <td><b>Platforme(s)</b></td>
+        </tr>
+        </thead>
+    <tbody>
+    {% for nomJeu, idJeu, prix, uScore, date, achievements, nomDev, nomEditeur, idPlat, nomPlat in jeux %}
+        <tr><td><a href="/jeu/{{ idJeu }}">{{ nomJeu }}</a></td>
+            <td><a href="">${{ prix/100 }}</a></td>
+            <td><a href="">{{ uScore }}</a></td>
+            <td><a href="">{{ date }}</a></td>
+            <td>{{ achievements }}</td>
+            <td><a href="">{{ nomDev }}</a></td>
+            <td><a href="">{{ nomEditeur }}</a></td>
+            <td><a href="/platforme/{{ idPlat }}">{{ nomPlat }}</a></td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
