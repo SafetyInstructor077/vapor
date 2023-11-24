@@ -6,13 +6,25 @@ app = Flask(__name__)
 @app.route('/')
 def store():
     jeux = db.get_featured()
+    print(jeux)
     return render_template("store.html", jeux=jeux)
+
+@app.route('/library')
+def library():
+    jeux = db.get_all_jeux()
+    print(jeux)
+    return render_template("list_games.html", jeux=jeux)
 
 @app.route('/jeu/<int:idJeu>')
 def jeu(idJeu):
     print(idJeu)
     jeu = db.get_jeu_by_id(idJeu)
     return render_template("game.html", jeu=jeu)
+
+@app.route('/platforme/<int:idPlat>')
+def platforme(idPlat):
+    jeux = db.get_jeux_by_plat(idPlat)
+    return render_template("list_games.html", jeux=jeux)
 
 @app.route('/admin.<table>')
 def admin(table):
