@@ -194,4 +194,6 @@ def format_all(jeux):
     return jeux
 
 def reduire_desc(description):
-    return re.sub(r'<a(.*</a>)','',re.sub(r'<img(.*/>)','',description)) # on soustrait les liens et les images
+    # l = re.sub(r'<a(.*</a>)','',re.sub(r'<img(.*/>)','', description))
+    # return re.sub(r'<br>','', l) # on soustrait les liens et les images
+    return re.sub(r'<a(.*</a>)','',re.sub(r'<img(.*/>)','', description))

@@ -495,7 +495,44 @@ td {
 }
 
 .htmlImg{
-  /* display: none; */
+  display: none;
   max-height: 50px;
 }
 
+#ihm_description{
+  margin-top: 20px;
+  max-height: 7rem;
+
+  color: #757575;
+  font-size: 10px;
+  word-wrap: break-word;
+  overflow: auto;
+  overflow-wrap: break-word;
+  text-overflow: ellipsis;
+  font-family: "Times New Roman", Times, serif;
+}
+
+#ihm_description *{
+  all: initial;
+  color: #757575;
+  font-size: 10px;
+  word-wrap: break-word;
+  overflow: auto;
+  text-overflow: ellipsis;
+}
+
+/* .part1 > *{
+  all: initial;
+  display: block;
+  font-size: xx-small;
+  color: #757575;
+} */
+
+.part2{
+  display: none;
+  font: smaller;
+}
+
+.ihm__image{
+  width: 370px;
+}
