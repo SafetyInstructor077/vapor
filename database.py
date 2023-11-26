@@ -95,6 +95,16 @@ def get_jeux_by_annee(annee):
                         order by jeu.date asc""" # on trie par la date de sortie du jeu
     return _select(requete, params=(annee,))
 
+def get_jeux_by_plat(plat):
+    """Renvoie une liste des jeux jouables sur la platforme précisée"""
+    requete = """select nomJeu,idJeu,prix,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,jeu.idPlat,platformes.nomPlat from jeu
+                        inner join developpeur on developpeur.idDev = jeu.idDev
+                        inner join editeur on editeur.idEditeur = jeu.idEditeur
+                        inner join platformes on platformes.idPlat = jeu.idPlat
+                        where platformes.idPlat = ?
+                        order by jeu.uScore desc"""
+    return _select(requete, params=(plat,))
+
 def get_all_jeux():
     """Renvoie (avec une limite de 100) les jeux sans les trier et les filtrer"""
     requete = """select nomJeu,idJeu,prix,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,jeu.idPlat,platformes.nomPlat from jeu
