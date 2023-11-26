@@ -97,7 +97,7 @@ def get_jeux_by_annee(annee):
 
 def get_all_jeux():
     """Renvoie (avec une limite de 100) les jeux sans les trier et les filtrer"""
-    requete = """select nomJeu,idJeu,prix,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,platformes.nomPlat from jeu
+    requete = """select nomJeu,idJeu,prix,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,jeu.idPlat,platformes.nomPlat from jeu
                  inner join developpeur on developpeur.idDev = jeu.idDev
                  inner join editeur on editeur.idEditeur = jeu.idEditeur
                  inner join platformes on platformes.idPlat = jeu.idPlat
