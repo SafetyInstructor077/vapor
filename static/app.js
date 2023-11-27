@@ -52,4 +52,99 @@ window.onscroll = function() {
     prev = current
 };
 
+function validerForm() {
+  const form = document.forms["iform"]
+  let nomJeu = form["nomJeu"].value;
+  console.log("nomJeu : "+nomJeu)
+  let description = form["description"].value;
+  console.log("description : "+description)
+  let prix = form["prix"].value;
+  console.log("prix : "+prix)
+  let uScore = form["uScore"].value;
+  console.log("uScore : "+uScore)
+  let date = form["date"].value;
+  console.log("date : "+date)
+  let image = form["image"].value;
+  console.log("image : "+image)
+  let achievements = form["achievements"].value;
+  console.log("achievements : "+achievements)
+  let nomDev = form["nomDev"].value;
+  console.log("nomDev : "+nomDev)
+  let nomEditeur = form["nomEditeur"].value;
+  console.log("nomEditeur : "+nomEditeur)
+  let win = form["win"].checked;
+  let mac = form["mac"].checked;
+  let lnx = form["lnx"].checked;
+  console.log("win : "+win)
+  console.log("mac : "+mac)
+  console.log("lnx : "+lnx)
+  let bien = true
+  if (nomJeu === "") {
+    alert("Insérer un titre pour le jeu");
+    document.getElementById("nomJeu").style.backgroundColor = "#FFE1DA"
+    if (bien === true) {bien = false}
+  }
+  if (description === "") {
+      alert("Insérer une description pour le jeu");
+      document.getElementById("description").style.backgroundColor = "#FFE1DA"
+      if (bien === true) {bien = false}
+  }
+  if (prix === '' || Number.isNaN(Number(prix))) {
+      alert("Insérer le prix du jeu");
+      document.getElementById("prix").style.backgroundColor = "#FFE1DA"
+      if (bien === true) {bien = false}
+  }
+  if (uScore === '' || Number.isNaN(Number(uScore)) || Number(uScore)<0 || Number(uScore)>100) {
+      alert("Insérer le score du jeu, il doit être entre 0 et 100");
+      document.getElementById("uScore").style.backgroundColor = "#FFE1DA"
+      if (bien === true) {bien = false}
+  }
+  if (date === "") {
+      alert("Insérer la date de sortie du jeu");
+      document.getElementById("date").style.backgroundColor = "#FFE1DA"
+      if (bien === true) {bien = false}
+  }
+  if (image === "") {
+    alert("Insérer le lien vers l'image du jeu");
+    document.getElementById("image").style.backgroundColor = "#FFE1DA"
+    if (bien === true) {bien = false}
+  }
+  if (achievements === '') {
+    alert("Insérer le nombre de succès");
+    document.getElementById("achievements").style.backgroundColor = "#FFE1DA"
+    if (bien === true) {bien = false}
+  }
+  if (nomDev === "") {
+    alert("Insérer le nom du développeur");
+    document.getElementById("nomDev").style.backgroundColor = "#FFE1DA"
+    if (bien === true) {bien = false}
+  }
+  if (win === false && mac === false && lnx === false) {
+    alert("Sélectionner les platformes");
+    if (bien === true) {bien = false}
+  }
+  if (bien) {
+    console.log("Bravo le formulaire est bien rempli")
+  }
 
+  fetch("/insertion", {
+    method: "POST",
+    body: JSON.stringify({
+      "nomJeu": nomJeu,
+      "description": description,
+      "prix": Number(prix),
+      "uScore": Number(uScore),
+      "date": date,
+      "image": image,
+      "achievements": Number(achievements),
+      "nomDev": nomDev,
+      "nomEditeur": nomEditeur,
+      "win": win,
+      "mac": mac,
+      "lnx": lnx
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  }).then(response => response.text()).then(id => {window.location.href = "/jeu/"+id})
+}
