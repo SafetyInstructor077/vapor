@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script defer src="{{ url_for('static', filename='app.js') }}"></script>
-  <link rel="stylesheet" href="{{ url_for('static', filename='leo.css') }}"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
   <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
@@ -18,7 +18,7 @@
 <!--               BARRE DE NAVIGATION                                      -->
 <nav class="navbar" id="nav">
   <div class="navbar__container" >
-    <a href="#" id="navbar__logo"><img class="imglogo" src="https://media.discordapp.net/attachments/713449876570243273/1167954649467334766/steam-logo-white.png?ex=65500187&is=653d8c87&hm=9639bc809402821ef39625ec14b5339b6d42ec9b0a2ea8b34da698dce91830bc&=&width=1445&height=1445" height="40px">VAPOR</a>
+    <a href="#" id="navbar__logo"><img class="imglogo" src="../static/vapor.png" height="40px">VAPOR</a>
     <div class="navbar__toggle" id="mobile-menu"> 
       <span class="bar"></span> <span class="bar"></span>
       <span class="bar"></span>
@@ -35,12 +35,12 @@
       </li>
     </ul>
   </div>
-  <div class="search">
+  <!-- <div class="search">
     <form>
       <i class="fa-solid fa-magnifying-glass"></i>
       <input class='searchbar' type="search" placeholder="search">
     </form>
-  </div>
+  </div> -->
 </nav>
 
 {% block content %}

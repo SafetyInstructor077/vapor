@@ -52,16 +52,4 @@ window.onscroll = function() {
     prev = current
 };
 
-var str = $('').text();
-if(len>200){
-  var new_str = str.subtstr(0,200); 
-  new_str += '<div data="'+str+'">' +  new_str + '... </div>';
 
-  var newDiv = $(new_str);
-  var link_read_more = $('<a class="read_more">Read more</a>');
-  link_read_more.click(function(){
-    var originaltext = $(this).parent().attr('data');
-    $(this).parent().html(originaltext);
-  });
-  newDiv.append(link_read_more);
-}

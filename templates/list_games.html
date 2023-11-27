@@ -3,7 +3,7 @@
 
 {% block container %}
 
-<table class="table is-narrow is-hoverable is-bordered">
+<!-- <table class="table is-narrow is-hoverable is-bordered">
     <thead>
         <tr>
             <td><b>Titre ({{ jeux | length }} jeux)</b></td>
@@ -17,7 +17,7 @@
         </tr>
         </thead>
     <tbody>
-    {% for nomJeu, idJeu, prix, uScore, date, achievements, nomDev, nomEditeur, idPlat, nomPlat in jeux %}
+    {% for nomJeu, idJeu, prix, image, uScore, date, achievements, nomDev, nomEditeur, idPlat, nomPlat in jeux %}
         <tr><td><a href="/jeu/{{ idJeu }}">{{ nomJeu }}</a></td>
             <td><a href="">${{ prix/100 }}</a></td>
             <td><a href="">{{ uScore }}</a></td>
@@ -28,6 +28,41 @@
             <td><a href="/platforme/{{ idPlat }}">{{ nomPlat }}</a></td></tr>
     {% endfor %}
     </tbody>
-</table>
+</table> -->
+
+<div class="tp" id="tp">
+    {% for nomJeu, idJeu, prix, image, uScore, date, achievements, nomDev, nomEditeur, idPlat, nomPlat in jeux %}
+    <div class="ihm__wrapper">
+        <div class="ihm__card">
+          <div class="ihm_container">
+            <img src="{{ image }}" width="370px" class="ihm__image">
+            <div class="ihm_text">
+                <div class="ihm_main">
+                    <h2>{{ nomJeu }}</h2>
+                    <!-- <h6>{{ nomPlat }}</h6> -->
+                </div>
+                <div class="ihm_rest">
+                    <h4>
+                    {% if prix == 0 %}
+                        {{ 'Gratuit' }}
+                    {% else %}
+                    {{ '{:.2f}$'.format(prix / 100) }}
+                    {% endif %}
+                    </h4>
+                    <h4>{{ nomDev }}</h4>
+                    <h4>{{ nomPlat }}</h4>
+                </div>
+              <p>Rating : {{ uScore }}</p>
+              <p>Date de sortie : {{ date }}</p>
+              <p>Nombres d'accomplissements : {{ achievements }}</p>
+
+            </div>
+          </div>
+          <!-- <div class="ihm__btn"><button><a href="#">More About</a></button></div> -->
+  
+        </div>
+    </div>
+    {% endfor %}
+  </div>
 
 {% endblock %}
