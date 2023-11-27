@@ -2,8 +2,8 @@
 {% block title %} insert {% endblock %}
 
 {% block container %}
-
-    <form action="/insertion" method="post" class="iform">
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <form action="/insertion" method="post" class="iform" id="iform">
         
         <label for="nomJeu">Titre:</label>
         <input type="text" id="nomJeu" name="nomJeu"><br><br>
@@ -26,10 +26,10 @@
         <label for="achievements">Nombre de succès:</label>
         <input type="number" id="achievements" name="achievements"><br><br>
 
-        <label for="idDev">Nom du développeur:</label>
+        <label for="nomDev">Nom du développeur:</label>
         <input type="text" id="nomDev" name="nomDev"><br><br>
 
-        <label for="idEditeur">Nom de l'éditeur:</label>
+        <label for="nomEditeur">Nom de l'éditeur:</label>
         <input type="text" id="nomEditeur" name="nomEditeur"><br><br>
 
         <fieldset>
@@ -43,7 +43,7 @@
         </fieldset>
 
     
-        <input type="submit" value="Submit">
+        <input type="button" value="Submit" onclick="validerForm()">
     </form>
 
 {% endblock %}
