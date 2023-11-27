@@ -48,8 +48,18 @@ def insert_page():
 @app.route('/insertion', methods=["POST"])
 def insert_form():
     if request.method == 'POST':
-        jeu = request.form
-        print(jeu)
+        print(request.get_json())
+        jeu = request.get_json()
+        plat = ''
+        if jeu["win"]: plat += "WIN" # transformer la platforme en un string convenable à notre base de données
+        if jeu["mac"]: plat += "MAC" if plat == "" else ",MAC"
+        if jeu["lnx"]: plat += "LNX" if plat == "" else ",LNX"
+        plat = db.get_plat_id(plat)[0][0]
+        nomEditeur = jeu["nomEditeur"]
+        if nomEditeur == "":
+            nomEditeur = None
+        db.insert_jeu(jeu["nomJeu"],jeu["description"],jeu["prix"],jeu["uScore"],jeu["date"],jeu["image"],jeu["achievements"],jeu["nomDev"],nomEditeur,plat)
+        return str(db._select(f"select idJeu from jeu where nomJeu = '{jeu["nomJeu"]}'")[0][0])
 
 if __name__ == "__main__":
     app.run(debug=True)
