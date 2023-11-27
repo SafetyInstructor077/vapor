@@ -127,6 +127,15 @@ def get_jeu_by_id(idJeu):
                  limit 1"""
     return _select(requete, params=(idJeu,))
 
+
+def get_jeu_by_keyword(keyword):
+    requete = f"""select nomJeu,idJeu,prix,image,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,jeu.idPlat,platformes.nomPlat from jeu
+                 inner join developpeur on developpeur.idDev = jeu.idDev
+                 inner join editeur on editeur.idEditeur = jeu.idEditeur
+                 inner join platformes on platformes.idPlat = jeu.idPlat
+                 where UPPER(nomJeu) LIKE UPPER('%{keyword}%') OR UPPER(description) LIKE UPPER('%{keyword}%')"""
+    return _select(requete)
+
 def get_admin(table):
     """Renvoie 200 entrés max de la table précisée
     Les tables possibles sont : (jeu,developpeur,editeur,plarformes)"""
