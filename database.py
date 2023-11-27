@@ -23,6 +23,9 @@ def get_plat_id(plat):
      requete = """select idPlat from platformes where nomPlat = ?""" 
      return _select(requete, params=(plat,))
 
+def get_dev_id(nomDev):
+    return _select(f"select idDev from developpeur where nomDev == '{nomDev}'")[0]
+
 def insert_from_id(id):
     res = get(f"https://store.steampowered.com/api/appdetails?appids={id}") # demande les données d'un jeu au API
     if res.status_code == 200:
