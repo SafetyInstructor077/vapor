@@ -599,17 +599,21 @@ label{
   margin-left: 10px;
 }
 
-input, select, textarea {
+input {
   all: unset;
   font-size: 15px;
   padding: 3px;
-  background: #45658db5;
+  background: #45658d;
   border-radius: 5px;
 }
 
 .searchbar{
   background-color: #45658d;
   color: #fff;
+}
+
+input[type="checkbox"] {  
+  all: revert;
 }
 
 input[type="submit"] {  
