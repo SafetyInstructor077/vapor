@@ -566,3 +566,14 @@ td {
   background: #324a67;
   border-radius: 10px;
 }
+
+.searchDiv > form > label {
+  color: white;
+}
+
+.searchDiv {
+  border: 1px solid white;
+  margin: 10px;
+  margin-top: 20px;
+  padding: 5px;
+}
