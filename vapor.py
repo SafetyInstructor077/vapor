@@ -59,7 +59,7 @@ def insert_form():
         if nomEditeur == "":
             nomEditeur = None
         db.insert_jeu(jeu["nomJeu"],jeu["description"],jeu["prix"],jeu["uScore"],jeu["date"],jeu["image"],jeu["achievements"],jeu["nomDev"],nomEditeur,plat)
-        return str(db._select(f"select idJeu from jeu where nomJeu = '{jeu["nomJeu"]}'")[0][0])
+        return str(db._select(f"select idJeu from jeu where nomJeu = '{jeu['nomJeu']}'")[0][0])
 
 @app.route('/chercher')
 def chercher():

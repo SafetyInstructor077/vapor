@@ -323,6 +323,7 @@ cursor: pointer;
     width: 120vh;
     border-radius: 4px;
     display: flex;
+    background-color: #212e408b;
     flex-direction: column;
     justify-content: center;
     color: #fff;
@@ -534,6 +535,29 @@ td {
   text-overflow: ellipsis;
 }
 
+#ihm_desc{
+  margin-top: 20px;
+  /* max-height: 7rem; */
+  /* width: 570px; */
+
+  color: #757575;
+  font-size: 20px;
+  word-wrap: break-word;
+  overflow: auto;
+  overflow-wrap: break-word;
+  text-overflow: ellipsis;
+  font-family: "Times New Roman", Times, serif;
+}
+
+#ihm_desc *{
+  all: initial;
+  color: #757575;
+  font-size: 10px;
+  word-wrap: break-word;
+  overflow: auto;
+  text-overflow: ellipsis;
+}
+
 /* .part1 > *{
   all: initial;
   display: block;
@@ -567,13 +591,35 @@ td {
   border-radius: 10px;
 }
 
-.searchDiv > form > label {
+.searchDiv > form {
   color: white;
 }
 
-.searchDiv {
-  border: 1px solid white;
-  margin: 10px;
-  margin-top: 20px;
-  padding: 5px;
+label{
+  margin-left: 10px;
+}
+
+input, select, textarea {
+  all: unset;
+  font-size: 15px;
+  padding: 3px;
+  background: #45658db5;
+  border-radius: 5px;
+}
+
+.searchbar{
+  background-color: #45658d;
+  color: #fff;
+}
+
+input[type="submit"] {  
+  all: unset;
+  display: none;
+}
+
+#length{
+  color: #fff;
+  position: absolute;
+  top: 85px;
+  right: 10px;
 }

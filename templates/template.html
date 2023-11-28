@@ -5,12 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script defer src="{{ url_for('static', filename='app.js') }}"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
-  <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
-      crossorigin="anonymous"
-    />
+  <script src="https://kit.fontawesome.com/032c2dd8c9.js" crossorigin="anonymous"></script>
 </head>
         
 <body> 
@@ -33,13 +28,16 @@
       <li class="navbar__item">
         <a href="#" class="navbar__links" id="pilot-page">About</a>
       </li>
+      <li>
+        <form action="/chercher">
+          <label for="prix" class="fa-solid fa-magnifying-glass" style="color:#fff;"></label>
+          <input class='searchbar' type="text" placeholder="" name="keyword" id="keyword">
+          <label for="keyword" class="fa-solid fa-dollar-sign" style="color:#fff;"></label>
+          <input class='searchbar' type="number" placeholder="" name="prix" id="prix">
+          <input type="submit" value="Soumettre">
+      </form>
+      </li>
     </ul>
-  </div>
-  <div class="search">
-    <form action="/chercher">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input class='searchbar' type="search" placeholder="search" name="keyword">
-    </form>
   </div>
 </nav>
 

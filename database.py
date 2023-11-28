@@ -110,7 +110,7 @@ def get_jeux_by_plat(plat):
 
 def get_all_jeux():
     """Renvoie (avec une limite de 100) les jeux sans les trier et les filtrer"""
-    requete = """select nomJeu,idJeu,prix,image,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,jeu.idPlat,platformes.nomPlat from jeu
+    requete = """select nomJeu,idJeu,prix,image,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,jeu.idPlat,platformes.nomPlat,description from jeu
                  inner join developpeur on developpeur.idDev = jeu.idDev
                  inner join editeur on editeur.idEditeur = jeu.idEditeur
                  inner join platformes on platformes.idPlat = jeu.idPlat
@@ -119,7 +119,7 @@ def get_all_jeux():
 
 def get_jeu_by_id(idJeu):
     """Renvoie le jeu dont le id a été précisé"""
-    requete = """select nomJeu,description,idJeu,prix,image,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,platformes.nomPlat from jeu
+    requete = """select nomJeu,idJeu,prix,image,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,platformes.nomPlat from jeu
                  inner join developpeur on developpeur.idDev = jeu.idDev
                  inner join editeur on editeur.idEditeur = jeu.idEditeur
                  inner join platformes on platformes.idPlat = jeu.idPlat
@@ -141,11 +141,7 @@ def get_jeu_by_filter(keyword,prix):
             requete += f"where prix <= {prix}"
         else:
             requete += f"and prix <= {prix}"
-    print(requete)
-    jeux = format_all(_select(requete))
-    for i in range(len(jeux)):
-        jeux[i][11] = reduire_desc(jeux[i][11])
-    return jeux
+    return _select(requete)
     
 
 def get_admin(table):

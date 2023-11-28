@@ -4,6 +4,7 @@
 {% block container %}
 
 <div class="tp" id="tp">
+  <div id="length">{{ jeux | length }}</div>
   {% for jeu in jeux %} <!-- (idJeu, nomJeu, description, prix, uScore, image, idDev, idEditeur, idPlatforme, descreduit) -->
   <div class="ihm__wrapper">
       <div class="ihm__card">
