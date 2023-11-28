@@ -75,7 +75,7 @@ def get_featured():
                 insert_from_id(jeu["id"]) # s'il n'y a pas de jeux dans la BDD qui sont sur le devant du magasin alors on les insère
             jeux = _select(f"select idJeu,nomJeu,description,prix,uScore,image,developpeur.nomDev from jeu inner join developpeur on jeu.idDev = developpeur.idDev where nomJeu = {conditions}")
         return format_all(jeux)
-    else: return [[0,"Aucun jeu n'est en vedette en ce moment.", "Réessayez plus tard.", 0, 0, "00-00-0000", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png", 0, 1, 1, 1]]
+    else: return [[0,"Aucun jeu n'est en vedette en ce moment.", "Réessayez plus tard.", 0, 0, "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png", "Réessayez plus tard"]]
 
 def get_jeux_by_dev(idDev):
     """Retourne les jeux faits par un certain développeur à partir de son id"""
