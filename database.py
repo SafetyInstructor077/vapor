@@ -127,13 +127,21 @@ def get_jeu_by_id(idJeu):
                  limit 1"""
     return _select(requete, params=(idJeu,))
 
-
-def get_jeu_by_keyword(keyword):
+def get_jeu_by_filter(keyword,prix):
     requete = f"""select nomJeu,idJeu,prix,image,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,jeu.idPlat,platformes.nomPlat from jeu
                  inner join developpeur on developpeur.idDev = jeu.idDev
                  inner join editeur on editeur.idEditeur = jeu.idEditeur
-                 inner join platformes on platformes.idPlat = jeu.idPlat
-                 where UPPER(nomJeu) LIKE UPPER('%{keyword}%') OR UPPER(description) LIKE UPPER('%{keyword}%')"""
+                 inner join platformes on platformes.idPlat = jeu.idPlat 
+                 """   
+    print("keyword : "+keyword)
+    print("prix : "+prix)
+    if len(keyword) != 0: requete += f"where (UPPER(nomJeu) LIKE UPPER('%{keyword}%') OR UPPER(description) LIKE UPPER('%{keyword}%')) "
+    if len(prix) != 0: 
+        if len(keyword) == 0:
+            requete += f"where prix <= {prix}"
+        else:
+            requete += f"and prix <= {prix}"
+    print(requete)
     return _select(requete)
 
 def get_admin(table):
