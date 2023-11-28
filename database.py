@@ -128,11 +128,11 @@ def get_jeu_by_id(idJeu):
     return _select(requete, params=(idJeu,))
 
 def get_jeu_by_filter(keyword,prix):
-    requete = f"""select nomJeu,idJeu,prix,image,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,jeu.idPlat,platformes.nomPlat from jeu
+    requete = f"""select nomJeu,idJeu,prix,image,uScore,date,achievements,developpeur.nomDev,editeur.nomEditeur,jeu.idPlat,platformes.nomPlat,description from jeu
                  inner join developpeur on developpeur.idDev = jeu.idDev
                  inner join editeur on editeur.idEditeur = jeu.idEditeur
                  inner join platformes on platformes.idPlat = jeu.idPlat 
-                 """   
+                 """  
     print("keyword : "+keyword)
     print("prix : "+prix)
     if len(keyword) != 0: requete += f"where (UPPER(nomJeu) LIKE UPPER('%{keyword}%') OR UPPER(description) LIKE UPPER('%{keyword}%')) "
@@ -142,7 +142,11 @@ def get_jeu_by_filter(keyword,prix):
         else:
             requete += f"and prix <= {prix}"
     print(requete)
-    return _select(requete)
+    jeux = format_all(_select(requete))
+    for i in range(len(jeux)):
+        jeux[i][11] = reduire_desc(jeux[i][11])
+    return jeux
+    
 
 def get_admin(table):
     """Renvoie 200 entrés max de la table précisée
