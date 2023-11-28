@@ -31,6 +31,16 @@
 </table> -->
 
 <div class="tp" id="tp">
+    <div class="searchDiv">
+        <form action="/chercher">
+            <label for="keyword">Rechercher un mot-clé : </label>
+            <input class='searchbar' type="text" placeholder="search" name="keyword" id="keyword">
+            <label for="prix">Prix : </label>
+            <input class='searchbar' type="number" placeholder="search" name="prix" id="prix">
+            <input type="submit" value="Soumettre">
+        </form>
+    </div>
+    <h3 style="color: white;">{{jeux | length}} jeux</h3>
     {% for nomJeu, idJeu, prix, image, uScore, date, achievements, nomDev, nomEditeur, idPlat, nomPlat in jeux %}
     <div class="ihm__wrapper">
         <div class="ihm__card">
