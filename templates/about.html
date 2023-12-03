@@ -19,8 +19,19 @@
                 <li><a href="/admin.developpeur">/admin.developpeur</a></li>
                 <li><a href="/admin.editeur">/admin.editeur</a></li>
                 <li><a href="/admin.platformes">/admin.platformes</a></li>
+                <li><a href="/admin.jeu/keyword.insect">/admin.jeu/keyword.insect</a></li>
+                <li><a href="/admin.developpeur/keyword.fun">/admin.developpeur/keyword.fun</a></li>
+                <li><a href="/admin.jeu/dev.Valve">/admin.jeu/dev.Valve</a></li>
+                <li><a href="/admin.jeu/prix.499">/admin.jeu/prix.499</a></li>
             </ul>
-            <p>Télécharger la BDD : <a href="https://drive.google.com/file/d/1AKCRFnsd1OhBrUcm4JchDZ_EENGsahbZ/view?usp=sharing">steamDatabase.db</a></p>
+            <p>Nous pouvons aussi faire une recherche avec le mot clé et le prix :</p>
+            <form action="/chercher">
+                <label for="prix" class="fa-solid fa-magnifying-glass" style="color:#fff;"></label>
+                <input class='searchbar' type="text" placeholder="" name="keyword" id="keyword">
+                <label for="keyword" class="fa-solid fa-dollar-sign" style="color:#fff;"></label>
+                <input class='searchbar' type="number" placeholder="" name="prix" id="prix">
+                <input type="submit" value="Soumettre">
+            </form>
         </div>
     </div>
 </div>
