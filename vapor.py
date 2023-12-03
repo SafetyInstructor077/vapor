@@ -9,6 +9,10 @@ def store():
     print(jeux)
     return render_template("store.html", jeux=jeux)
 
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
 @app.route('/library')
 def library():
     jeux = db.get_all_jeux()

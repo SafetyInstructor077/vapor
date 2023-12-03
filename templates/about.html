@@ -34,7 +34,149 @@
             </form>
         </div>
         <div class="ihm__card">
-            <h2>Le code</h2>
+            <h2>Le code</h2> 
+                <table class="cdcf">
+                    <tr>
+                        <th>Fonction</th>
+                        <th>Description</th>
+                        <th>Entrée(s)</th>
+                        <th>Sortie(s)</th>
+                    </tr>
+                    <tr>
+                        <td>_select</td>
+                        <td>Exécute une requête type select</td>
+                        <td>Requête SQL</td>
+                        <td>Résultat de la requête</td>
+                    </tr>
+                    <tr>
+                        <td>get_plat_id</td>
+                        <td>Requête qui renvoie l'id de la plateforme à partir des noms des plateformes</td>
+                        <td>Noms des plateformes</td>
+                        <td>Id correspondant</td>
+                    </tr>
+                    <tr>
+                        <td>get_dev_id</td>
+                        <td>Renvoie le id du développeur à partir de son nom</td>
+                        <td>Nom du développeur</td>
+                        <td>Id correspondant</td>
+                    </tr>
+                    <tr>
+                        <td>insert_from_id</td>
+                        <td>Demande au API les données d’un jeu, formate la réponse et exécute la fonction pour l’insérer dans la BDD</td>
+                        <td>Id du jeu</td>
+                        <td>Fonction insert_jeu</td>
+                    </tr>
+                    <tr>
+                        <td>get_featured</td>
+                        <td>Demande au API les jeux en vedette, puis les cherche dans la BDD, s’ils n’y sont pas alors elle exécute la fonction insert_from_id</td>
+                        <td></td>
+                        <td>La liste des jeux en vedette</td>
+                    </tr>
+                    <tr>
+                        <td>get_jeux_by_dev</td>
+                        <td>Retourne les jeux faits par un certain développeur à partir de son id</td>
+                        <td>Id du développeur</td>
+                        <td>Liste des jeux</td>
+                    </tr>
+                    <tr>
+                        <td>get_jeux_by_pub</td>
+                        <td>Retourne les jeux publiés par un certain éditeur à partir de son id</td>
+                        <td>Id de l’éditeur</td>
+                        <td>Liste des jeux</td>
+                    </tr>
+                    <tr>
+                        <td>get_jeux_by_annee</td>
+                        <td>Renvoie une liste des jeux sortis pendant l'année précisée</td>
+                        <td>Année</td>
+                        <td>Liste des jeux</td>
+                    </tr>
+                    <tr>
+                        <td>get_jeux_by_plat</td>
+                        <td>Renvoie une liste des jeux jouables sur la plateforme précisée</td>
+                        <td>Id de la plateforme</td>
+                        <td>Liste des jeux</td>
+                    </tr>
+                    <tr>
+                        <td>get_all_jeux</td>
+                        <td>Renvoie (avec une limite de 100) les jeux sans les trier ou les filtrer</td>
+                        <td></td>
+                        <td>Liste des jeux</td>
+                    </tr>
+                    <tr>
+                        <td>get_jeu_by_id</td>
+                        <td>Renvoie le jeu dont le id a été précisé</td>
+                        <td>Id du jeu</td>
+                        <td>Données sur le jeu</td>
+                    </tr>
+                    <tr>
+                        <td>get_jeu_by_filter</td>
+                        <td>Renvoie une liste des jeux correspondants aux filtres précisés</td>
+                        <td>Mot clé et prix</td>
+                        <td>Liste des jeux</td>
+                    </tr>
+                    <tr>
+                        <td>get_admin</td>
+                        <td>Renvoie 200 entrées max de la table précisée</td>
+                        <td>Les tables possibles sont : (jeu, développeur, éditeur, plateformes)</td>
+                        <td>Liste des entrées</td>
+                    </tr>
+                    <tr>
+                        <td>get_admin_param</td>
+                        <td>Admin complexes, mêmes tables que admin</td>
+                        <td>La table, le paramètre et sa valeur</td>
+                        <td>Liste des entrées</td>
+                    </tr>
+                    <tr>
+                        <td>get_columns</td>
+                        <td>Renvoie le nom des colonnes d’une table</td>
+                        <td>Nom de la table</td>
+                        <td>Liste des colonnes</td>
+                    </tr>
+                    <tr>
+                        <td>insert_jeu</td>
+                        <td>Insert un nouveau jeu dans la BDD</td>
+                        <td>Nom du jeu, description du jeu, prix du jeu, rating du jeu, date du jeu, image du jeu, nombre de succès, nom du développeur, nom de l’éditeur, l’Id de la plateforme</td>
+                        <td>Fonction _select</td>
+                    </tr>
+                    <tr>
+                        <td>insert_dev</td>
+                        <td>Insert un nouveau développeur dans la BDD</td>
+                        <td>Nom du développeur</td>
+                        <td>Fonction _select</td>
+                    </tr>
+                    <tr>
+                        <td>insert_editeur</td>
+                        <td>Insert un nouvel éditeur dans la BDD</td>
+                        <td>Nom de l’éditeur</td>
+                        <td>Fonction _select</td>
+                    </tr>
+                    <tr>
+                        <td>dev_existe</td>
+                        <td>Vérifie si le développeur est dans la BDD et, si oui, retourne son Id.</td>
+                        <td>Nom du développeur</td>
+                        <td>Id correspondant</td>
+                    </tr>
+                    <tr>
+                        <td>editeur_existe</td>
+                        <td>Vérifie si l’éditeur est dans la BDD et, si oui, retourne son Id.</td>
+                        <td>Nom de l’éditeur</td>
+                        <td>Id correspondant</td>
+                    </tr>
+                    <tr>
+                        <td>format_all</td>
+                        <td>Fait en sorte que toutes les descriptions dans la liste jeux passent par la fonction reduire_desc</td>
+                        <td>Liste jeux</td>
+                        <td>Liste jeux modifiée</td>
+                    </tr>
+                    <tr>
+                        <td>reduire_desc</td>
+                        <td>Enlève les balises &lta&gt et &ltimg&gt du texte récupéré avec la BDD.</td>
+                        <td>La description</td>
+                        <td>La Description réduite</td>
+                    </tr>
+                </table>
+
+
             <img src="../static/get_featured.png">
             <img src="../static/insert_from_id.png">
             <img src="../static/insert_jeu.png">

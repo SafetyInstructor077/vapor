@@ -210,10 +210,10 @@ def dev_existe(nomDev):
 def editeur_existe(nomEditeur):
     return _select(f"select idEditeur from editeur where nomEditeur == '{nomEditeur}'") != []
 
-def format(description):
-    while '<img src' in description:
-        description = description.replace('<img src', '<img class="htmlImg" src')
-    return description
+# def format(description):
+#     while '<img src' in description:
+#         description = description.replace('<img src', '<img class="htmlImg" src')
+#     return description
 
 def format_all(jeux):
     for i in range(len(jeux)):

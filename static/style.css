@@ -627,3 +627,9 @@ input[type="submit"] {
   top: 85px;
   right: 10px;
 }
+
+.cdcf{
+  margin: 80px;
+  color: var(--white);
+  border-collapse:initial;
+}
