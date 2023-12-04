@@ -68,7 +68,7 @@ def get_featured():
             return [[0,"Aucun jeu n'est en vedette en ce moment.", "Réessayez plus tard.", 0, 0, "00-00-0000", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png", 0, 1, 1, 1]]
         conditions = f"'{infoJeux[0]['name']}'" # chercher les jeux dans la BDD
         for name in infoJeux[1:]:
-            conditions += f" or nomJeu = '{name['name']}'"
+            conditions += f" or nomJeu = '{name['name'].replace("'","’")}'"
         jeux = _select(f"select idJeu, nomJeu, description, prix, uScore, image, developpeur.nomDev from jeu inner join developpeur on jeu.idDev = developpeur.idDev where nomJeu = {conditions}")
         if jeux == []:
             for jeu in infoJeux:
